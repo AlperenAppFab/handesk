@@ -32,8 +32,9 @@ class TicketsController extends ApiController
     public function store()
     {
         $this->validate(request(), [
-            'requester' => 'required|array',
-            'title'     => 'required|min:3',
+            'requester'       => 'required|array',
+            'requester.email' => 'email',
+            'title'           => 'required|min:3',
         ]);
 
         $ticket = Ticket::createAndNotify(
@@ -52,18 +53,18 @@ class TicketsController extends ApiController
         return $this->respond(['id' => $ticket->id], Response::HTTP_CREATED);
     }
 
-    public function update(Ticket $ticket)
-    {
-        $ticket->updateStatus(request('status'));
-
-        return $this->respond(['id' => $ticket->id], Response::HTTP_OK);
-    }
-
     private function notifyDefault($ticket)
     {
         $setting = Settings::first();
         if ($setting && $setting->slack_webhook_url) {
             $setting->notify(new TicketCreated($ticket));
         }
+    }
+
+    public function update(Ticket $ticket)
+    {
+        $ticket->updateStatus(request('status'));
+
+        return $this->respond(['id' => $ticket->id], Response::HTTP_OK);
     }
 }
