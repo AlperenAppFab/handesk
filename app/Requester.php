@@ -8,9 +8,14 @@ class Requester extends BaseModel
 {
     use Notifiable;
 
-    public static function findOrCreate($name, $email = null, $phoneNumber = null)
+    public static function findOrCreate($name, $email = null, $phoneNumber = null, $uuid = null)
     {
-        return self::firstOrCreate(['email' => $email, 'name' => $name, 'phone_number' => $phoneNumber]);
+        return self::firstOrCreate([
+            'email' => $email,
+            'name' => $name,
+            'phone_number' => $phoneNumber,
+            'uuid' => $uuid,
+        ]);
     }
 
     public function ideas()

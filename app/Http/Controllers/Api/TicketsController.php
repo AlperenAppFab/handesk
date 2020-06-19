@@ -12,7 +12,10 @@ class TicketsController extends ApiController
 {
     public function index()
     {
-        $requester = Requester::whereName(request('requester'))->orWhere('email', '=', request('requester'))->firstOrFail();
+        $requester = Requester::whereName(request('requester'))
+            ->orWhere('email', '=', request('requester'))
+            ->orWhere('uuid', '=', request('requester'))
+            ->firstOrFail();
         if (request('status') == 'solved') {
             $tickets = $requester->solvedTickets;
         } elseif (request('status') == 'closed') {
