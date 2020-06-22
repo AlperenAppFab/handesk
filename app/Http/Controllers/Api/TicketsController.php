@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Notifications\TicketCreated;
 use App\Requester;
+use App\Resources\ApiTicketsResource;
 use App\Settings;
 use App\Ticket;
 use Illuminate\Http\Response;
@@ -15,7 +16,12 @@ class TicketsController extends ApiController
         $requester = Requester::whereName(request('requester'))
             ->orWhere('email', '=', request('requester'))
             ->orWhere('uuid', '=', request('requester'))
-            ->firstOrFail();
+            ->first();
+
+        if (empty($requester)) {
+            return $this->respond([]);
+        }
+
         if (request('status') == 'solved') {
             $tickets = $requester->solvedTickets;
         } elseif (request('status') == 'closed') {
@@ -24,7 +30,7 @@ class TicketsController extends ApiController
             $tickets = $requester->openTickets;
         }
 
-        return $this->respond($tickets);
+        return $this->respond(ApiTicketsResource::collection($tickets));
     }
 
     public function show(Ticket $ticket)
@@ -53,7 +59,7 @@ class TicketsController extends ApiController
             $this->notifyDefault($ticket);
         }
 
-        return $this->respond(['id' => $ticket->id], Response::HTTP_CREATED);
+        return $this->respond(ApiTicketsResource::make($ticket), Response::HTTP_CREATED);
     }
 
     private function notifyDefault($ticket)
