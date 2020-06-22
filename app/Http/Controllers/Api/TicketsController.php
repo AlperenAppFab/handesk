@@ -74,6 +74,6 @@ class TicketsController extends ApiController
     {
         $ticket->updateStatus(request('status'));
 
-        return $this->respond(['id' => $ticket->id], Response::HTTP_OK);
+        return $this->respond(ApiTicketsResource::make($ticket), Response::HTTP_OK);
     }
 }
