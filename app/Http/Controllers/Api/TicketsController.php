@@ -15,7 +15,7 @@ class TicketsController extends ApiController
     {
         $requester = Requester::whereName(request('requester'))
             ->orWhere('email', '=', request('requester'))
-            ->orWhere('uuid', '=', request('requester'))
+            ->orWhere('id', '=', request('requester'))
             ->first();
 
         if (empty($requester)) {

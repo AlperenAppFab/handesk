@@ -38,8 +38,7 @@ class Ticket extends BaseModel
         $requester = Requester::findOrCreate(
             $requester['name'] ?? 'Unknown',
             $requester['email'] ?? null,
-            $requester['phone_number'] ?? null,
-            $requester['uuid'] ?? null,
+            $requester['phone_number'] ?? null
         );
 
         $ticket    = $requester->tickets()->create([
