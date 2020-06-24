@@ -1,8 +1,7 @@
 <?php
 
 
-namespace App\Resources;
-
+namespace App\Http\Resources;
 
 use App\Ticket;
 use Illuminate\Http\Resources\Json\Resource;
@@ -33,6 +32,7 @@ class ApiTicketsResource extends Resource
                 'email'        => $ticket->requester->email,
                 'phone_number' => $ticket->requester->phone_number,
             ],
+            'comments'  => ApiCommentsResource::collection($this->whenLoaded('comments'))
         ];
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\ApiTicketsResource;
 use App\Notifications\TicketCreated;
 use App\Requester;
-use App\Resources\ApiTicketsResource;
 use App\Settings;
 use App\Ticket;
 use Illuminate\Http\Response;
@@ -35,19 +35,30 @@ class TicketsController extends ApiController
 
     public function show(Ticket $ticket)
     {
-        return $this->respond($ticket->load('requester', 'comments'));
+        return $this->respond(ApiTicketsResource::make($ticket->load('comments')));
     }
 
     public function store()
     {
         $this->validate(request(), [
-            'requester'       => 'required|array',
-            'requester.email' => 'email',
-            'title'           => 'required|min:3',
+            'requester'              => 'required|array',
+            'requester.email'        => 'email',
+            'requester.phone_number' => 'required',
+            'requester.name'         => 'required|string',
+            'title'                  => 'required|min:3',
         ]);
 
+        $requesterData = request()->get('requester');
+
+        $requester = Requester::updateOrCreate(
+            [
+                'id' => isset($requesterData['id']) ? $requesterData['id'] : null,
+            ],
+            $requesterData
+        );
+
         $ticket = Ticket::createAndNotify(
-            request('requester'),
+            $requester,
             request('title'),
             request('body'),
             request('tags')

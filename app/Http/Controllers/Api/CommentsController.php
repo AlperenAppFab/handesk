@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Ticket;
+use http\Client\Curl\User;
 use Illuminate\Http\Response;
 
 class CommentsController extends ApiController

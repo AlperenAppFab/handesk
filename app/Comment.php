@@ -34,7 +34,7 @@ class Comment extends BaseModel
 
     public function getAuthorAttribute()
     {
-        return array_only($this->author()->toArray(), ['name', 'email']);
+        return array_only($this->author()->toArray(), ['name', 'email', 'phone_number']);
     }
 
     public function notifyNewComment()
