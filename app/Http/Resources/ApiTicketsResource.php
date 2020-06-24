@@ -25,7 +25,10 @@ class ApiTicketsResource extends Resource
             'rating'    => $ticket->rating,
             'status'    => $ticket->statusName(),
             'priority'  => $ticket->priorityName(),
-            'type'      => $ticket->type(),
+            'type'      => [
+                'name'  => $ticket->type->name,
+                'color' => $ticket->type->color,
+            ],
             'requester' => [
                 'id'           => $ticket->requester->id,
                 'name'         => $ticket->requester->name,
