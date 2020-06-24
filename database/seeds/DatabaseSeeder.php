@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
 
         Settings::create();
 
+        $this->call(TicketTypeSeeder::class);
+
         /*$teams = factory(Team::class,4)->create();
         $teams->each(function($team){
             $team->memberships()->create([

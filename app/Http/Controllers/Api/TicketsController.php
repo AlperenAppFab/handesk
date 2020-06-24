@@ -7,6 +7,7 @@ use App\Notifications\TicketCreated;
 use App\Requester;
 use App\Settings;
 use App\Ticket;
+use App\TicketType;
 use Illuminate\Http\Response;
 
 class TicketsController extends ApiController
@@ -57,11 +58,14 @@ class TicketsController extends ApiController
             $requesterData
         );
 
+        $ticketType = TicketType::where('name', request('ticket_type_name'))->first();
+
         $ticket = Ticket::createAndNotify(
             $requester,
             request('title'),
             request('body'),
-            request('tags')
+            request('tags'),
+            optional($ticketType)->id
         );
 
         if (request('team_id')) {
