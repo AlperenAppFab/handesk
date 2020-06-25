@@ -14,6 +14,7 @@ class TicketsController extends ApiController
 {
     public function index()
     {
+        /** @var Requester $requester */
         $requester = Requester::whereName(request('requester'))
             ->orWhere('email', '=', request('requester'))
             ->orWhere('id', '=', request('requester'))
@@ -24,14 +25,18 @@ class TicketsController extends ApiController
         }
 
         if (request('status') == 'solved') {
-            $tickets = $requester->solvedTickets;
+            $tickets = $requester->solvedTickets();
         } elseif (request('status') == 'closed') {
-            $tickets = $requester->closedTickets;
+            $tickets = $requester->closedTickets();
         } else {
-            $tickets = $requester->openTickets;
+            $tickets = $requester->openTickets();
         }
 
-        return ApiTicketsResource::collection($tickets);
+        return ApiTicketsResource::collection(
+            $tickets
+                ->orderBy('updated_at', 'desc')
+                ->paginate(request()->get('per_page', 20))
+        );
     }
 
 
