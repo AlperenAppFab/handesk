@@ -22,7 +22,6 @@ class ApiCommentsResource extends Resource
         return [
             'id'         => $comment->id,
             'body'       => $comment->body,
-            'status'     => $comment->new_status,
             'is_user'    => $comment->isAuthorRequester(),
             'created_at' => $comment->created_at,
         ];
