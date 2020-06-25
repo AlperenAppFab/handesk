@@ -19,23 +19,23 @@ class ApiTicketsResource extends Resource
     {
         $ticket = $this->resource;
         return [
-            'id'        => $ticket->id,
-            'title'     => $ticket->title,
-            'body'      => $ticket->body,
-            'rating'    => $ticket->rating,
-            'status'    => $ticket->statusName(),
-            'priority'  => $ticket->priorityName(),
-            'type'      => [
+            'id'           => $ticket->id,
+            'title'        => $ticket->title,
+            'body'         => $ticket->body,
+            'status'       => $ticket->statusName(),
+            'created_at'   => $ticket->created_at,
+            'updated_at'   => $ticket->updated_at,
+            'type'         => [
                 'name'  => $ticket->type->name,
                 'color' => $ticket->type->color,
             ],
-            'requester' => [
+            'requester'    => [
                 'id'           => $ticket->requester->id,
                 'name'         => $ticket->requester->name,
                 'email'        => $ticket->requester->email,
                 'phone_number' => $ticket->requester->phone_number,
             ],
-            'comments'  => ApiCommentsResource::collection($this->whenLoaded('comments'))
+            'comments'     => ApiCommentsResource::collection($this->whenLoaded('comments'))
         ];
     }
 }

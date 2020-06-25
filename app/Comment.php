@@ -27,6 +27,11 @@ class Comment extends BaseModel
         return $this->user ?: $this->ticket->requester;
     }
 
+    public function isAuthorRequester(): bool
+    {
+        return empty($this->user);
+    }
+
     public function attachments()
     {
         return $this->morphMany(Attachment::class, 'attachable');

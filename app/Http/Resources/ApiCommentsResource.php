@@ -20,10 +20,11 @@ class ApiCommentsResource extends Resource
     {
         $comment = $this->resource;
         return [
-            'id'     => $comment->id,
-            'body'   => $comment->body,
-            'status' => $comment->new_status,
-            'author' => $comment->author,
+            'id'         => $comment->id,
+            'body'       => $comment->body,
+            'status'     => $comment->new_status,
+            'is_user'    => $comment->isAuthorRequester(),
+            'created_at' => $comment->created_at,
         ];
     }
 }

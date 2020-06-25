@@ -31,12 +31,13 @@ class TicketsController extends ApiController
             $tickets = $requester->openTickets;
         }
 
-        return $this->respond(ApiTicketsResource::collection($tickets));
+        return ApiTicketsResource::collection($tickets);
     }
+
 
     public function show(Ticket $ticket)
     {
-        return $this->respond(ApiTicketsResource::make($ticket->load('comments')));
+        return ApiTicketsResource::make($ticket->load('comments'));
     }
 
     public function store()

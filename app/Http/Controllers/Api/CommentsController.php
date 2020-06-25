@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\ApiCommentsResource;
 use App\Ticket;
 use http\Client\Curl\User;
 use Illuminate\Http\Response;
@@ -15,6 +16,6 @@ class CommentsController extends ApiController
             return $this->respond(['id' => null, 'message' => 'Can not create a comment with empty body'], Response::HTTP_OK);
         }
 
-        return $this->respond(['id' => $comment->id], Response::HTTP_CREATED);
+        return ApiCommentsResource::make($comment);
     }
 }
