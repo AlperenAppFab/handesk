@@ -12,15 +12,15 @@
     </style>
 </head>
 <body>
-    <div style="margin-bottom:15px;">
-        <img src="{{ asset('images/logo-white-filled-with-text.png') }}" height="60" alt="">
-    </div>
 
     @yield('body')
 
     <div style="margin-top:40px">
         Yardım için yardim@coz-gec.com adresine e-posta gönderebilirsiniz.
         <br/><br/>
+        <div style="margin-bottom:15px;">
+            <img src="{{ asset('images/logo-white-filled-with-text.png') }}" height="60" alt="">
+        </div>
         AppFab Uygulama Fabrikası Yazılım A.Ş. <br/>
         Mustafa Kemal Mh. Dumlupınar Blv. 266 B No: 73 Çankaya / ANKARA <br/>
         Mersis No: 0071083022700001
