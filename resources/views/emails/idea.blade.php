@@ -11,6 +11,6 @@
         </div>
 
         <div style="margin-top:40px">
-                <a href="{{$url}}">View the idea in Handesk</a>
+                <a href="{{$url}}">Yardım Merkezinde görüntülemek için tıklayınız.</a>
         </div>
 @endsection

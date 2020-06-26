@@ -12,10 +12,18 @@
     </style>
 </head>
 <body>
+    <div style="margin-bottom:15px;">
+        <img src="{{ asset('images/logo-white-filled-with-text.png') }}" height="60" alt="">
+    </div>
+
     @yield('body')
 
     <div style="margin-top:40px">
-        Powered by <a href="https://github.com/BadChoice/handesk"><img src="https://raw.githubusercontent.com/BadChoice/handesk/dev/public/images/handesk_full.png" height="30" align="center"></a>
+        Yardım için yardim@coz-gec.com adresine e-posta gönderebilirsiniz.
+        <br/><br/>
+        AppFab Uygulama Fabrikası Yazılım A.Ş. <br/>
+        Mustafa Kemal Mh. Dumlupınar Blv. 266 B No: 73 Çankaya / ANKARA <br/>
+        Mersis No: 0071083022700001
     </div>
 
 </body>

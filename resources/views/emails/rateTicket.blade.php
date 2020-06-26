@@ -27,6 +27,6 @@
             <a class="ratingStar" href="{{$url}}?rating=5">☆</a>
         </div>
 
-        <span style="color:white">ticket-id:{{$ticket->id}}.</span>
+        <span style="color:white">Kayıt numarası: {{$ticket->id}}.</span>
 
 @endsection

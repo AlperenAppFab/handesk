@@ -23,9 +23,9 @@
         </div>
 
         <div style="margin-top:40px">
-            Add a comment by replying to this email or <a href="{{$url}}">view the ticket in Handesk</a>
+            Bu mesaja cevap vermek için e-postayı yanıtlayabilirsiniz. <a href="{{$url}}">Yardım Merkezinde görüntülemek için tıklayınız.</a>
         </div>
 
-        <span style="color:white">ticket-id:{{$ticket->id}}.</span>
+        <span style="color:white">Kayıt numarası: {{$ticket->id}}.</span>
 
 @endsection

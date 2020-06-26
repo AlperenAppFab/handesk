@@ -6,15 +6,15 @@
         </div>
 
         <div>
-            Ticket has been rated:
+            Şikayet kaydı değerlendirildi:
             {{ $ticket->title }}<br><br>
             {{ $ticket->rating }}
         </div>
 
         <div style="margin-top:40px">
-            <a href="{{$url}}">View the ticket in Handesk</a>
+            <a href="{{$url}}">Yardım Merkezinde görüntülemek için tıklayınız.</a>
         </div>
 
-        <span style="color:white">ticket-id:{{$ticket->id}}.</span>
+        <span style="color:white">Kayıt numarası:{{$ticket->id}}.</span>
 
 @endsection
