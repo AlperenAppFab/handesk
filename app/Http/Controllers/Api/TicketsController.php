@@ -15,10 +15,7 @@ class TicketsController extends ApiController
     public function index()
     {
         /** @var Requester $requester */
-        $requester = Requester::whereName(request('requester'))
-            ->orWhere('email', '=', request('requester'))
-            ->orWhere('id', '=', request('requester'))
-            ->first();
+        $requester = Requester::find(request('requester'));
 
         if (empty($requester)) {
             return $this->respond([]);
