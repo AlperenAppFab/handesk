@@ -62,7 +62,11 @@ class TicketsController extends ApiController
         );
 
 
-        $ticketType = TicketType::where('name', request('ticket_type_name'))->firstOrFail();
+        $ticketType = TicketType::firstOrCreate([
+            'name' => request('ticket_type_name')
+        ], [
+            'color' => '#000000',
+        ]);
 
         $ticket = Ticket::createAndNotify(
             $requester,
