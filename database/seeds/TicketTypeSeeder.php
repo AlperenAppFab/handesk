@@ -13,10 +13,10 @@ class TicketTypeSeeder extends Seeder
     public function run()
     {
         $ticketTypes = [
-            'Testte Problem'     => '#ffa200',
-            'Teknik Hata'        => '#ff0000',
-            'Yüklemede Problem ' => '#68ff00',
-            'Diğer'              => '#00f9ff',
+            'Testte Problem'           => '#ffa200',
+            'Teknik Hata'              => '#ff0000',
+            'Kredi Yüklemede Problem ' => '#68ff00',
+            'Diğer'                    => '#00f9ff',
         ];
 
         foreach ($ticketTypes as $name => $color) {

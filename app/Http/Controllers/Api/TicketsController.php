@@ -61,7 +61,8 @@ class TicketsController extends ApiController
             $requesterData
         );
 
-        $ticketType = TicketType::where('name', request('ticket_type_name'))->first();
+
+        $ticketType = TicketType::where('name', request('ticket_type_name'))->firstOrFail();
 
         $ticket = Ticket::createAndNotify(
             $requester,
