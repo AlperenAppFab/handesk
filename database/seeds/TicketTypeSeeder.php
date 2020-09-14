@@ -15,7 +15,7 @@ class TicketTypeSeeder extends Seeder
         $ticketTypes = [
             'Testte Problem'           => '#ffa200',
             'Teknik Hata'              => '#ff0000',
-            'Kredi Yüklemede Problem ' => '#68ff00',
+            'Kredi Yüklemede Problem' => '#68ff00',
             'Diğer'                    => '#00f9ff',
         ];
 
